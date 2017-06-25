@@ -10,12 +10,12 @@ class HangpersonGame
   
   def initialize(word)
     @word = word
-    @guesses = ''
-    @wrong_guesses = ''
+    @guesses=''
+    @wrong_guesses=''
   end
   
-  attr_accessor :word, :guesses, :wrong_guesses
-  
+  attr_accessor :word,:guesses, :wrong_guesses
+
   def self.get_random_word
     require 'uri'
     require 'net/http'
