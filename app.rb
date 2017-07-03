@@ -73,7 +73,7 @@ class HangpersonApp < Sinatra::Base
       erb :win # You may change/remove this line
     else 
       flash[:message] = "Try to actually guess the word without cheating."
-      erb :show
+      redirect '/show'
     end
     
   end
@@ -83,7 +83,7 @@ class HangpersonApp < Sinatra::Base
       erb :lose # You may change/remove this line
     else 
       flash[:message] = "You didn't really lose."
-      erb :show
+      redirect '/show'
     end
   end
   
