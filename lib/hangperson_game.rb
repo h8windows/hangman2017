@@ -24,29 +24,34 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def guess (my_guess)
-    if my_guess == nil
-      raise ArgumentError.new("invalid guess")
-    end
-    if my_guess.length != 1
-      raise ArgumentError.new("invalid guess")
-    end
-    if !(my_guess =~ /[A-Za-z]/)
-      raise ArgumentError.new("invalid guess")
-    end  
-    word_check = @word.downcase
-    guess_check = my_guess.downcase
-    if !(@guesses.include? guess_check)&& !(@wrong_guesses.include? guess_check)
-      if word_check.include? guess_check
-        @guesses += guess_check
-      else
-        @wrong_guesses += guess_check
+  def guess(a_guess)
+      # first check if it's a valid guess
+      # must be a letter and non-empty
+      if a_guess == nil
+        raise ArgumentError.new("not a valid guess")
       end
-      return true
-    else
-      return false    
+      if a_guess.length != 1
+        raise ArgumentError.new("not a valid guess")
+      end
+      if !(a_guess =~ /[A-Za-z]/)
+        raise ArgumentError.new("not a valid guess")
+      end  
+      # check everything against a lower case string
+      word_lower = @word.downcase
+      # also change guess to lower case
+      a_guess_lower = a_guess.downcase
+      # first check if the guess has already been made
+      if !(@guesses.include? a_guess_lower)&& !(@wrong_guesses.include? a_guess_lower)
+        if word_lower.include? a_guess_lower
+          @guesses += a_guess_lower
+        else
+          @wrong_guesses += a_guess_lower
+        end
+        return true
+      else
+        return false    
+      end
     end
-  end
   
   def word_with_guesses
     display=''
