@@ -24,7 +24,7 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def guess my_guess
+  def guess (my_guess)
     if my_guess == nil
       raise ArgumentError.new("invalid guess")
     end
