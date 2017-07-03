@@ -43,7 +43,9 @@ class HangpersonApp < Sinatra::Base
     begin
       if !validity_of_guess
         flash[:message] = "You have already used that letter."
-      elsif !letter =~ /[A-Za-z]/ 
+      end
+    rescue
+      if letter != /[A-Za-z]/ 
         flash[:message] = "Invalid guess."
       end
     end
