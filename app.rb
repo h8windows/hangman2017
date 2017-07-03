@@ -71,6 +71,9 @@ class HangpersonApp < Sinatra::Base
     #check if really won!
     if @game.check_win_or_lose == :win
       erb :win # You may change/remove this line
+    else 
+      flash[:message] = "Try to actually guess the word without cheating."
+      erb :show
     end
     
   end
