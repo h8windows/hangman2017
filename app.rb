@@ -79,8 +79,12 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if @game.check_win_or_lose == :lose
+      erb :lose # You may change/remove this line
+    else 
+      flash[:message] = "You didn't really lose."
+      erb :show
+    end
   end
   
 end
